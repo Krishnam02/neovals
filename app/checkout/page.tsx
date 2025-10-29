@@ -259,7 +259,7 @@ export default function CheckoutPage() {
                       />
                       <div className="flex-1">
                         <p className="font-medium">UPI Payment</p>
-                        <p className="text-sm text-gray-600">Pay via Google Pay, PhonePe, Paytm</p>
+                        <p className="text-sm text-gray-600">Pay via any UPI app</p>
                       </div>
                     </label>
                     <label className="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition">

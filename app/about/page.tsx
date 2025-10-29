@@ -26,7 +26,7 @@ export default function AboutPage() {
         >
           <Image
             src="/ABOUT.jpg"
-            alt="Neovals streetwear vibe"
+            alt="Slavoane streetwear vibe"
             width={1400}
             height={900}
             className="w-full h-[650px] md:h-[700px] object-cover rounded-3xl"
@@ -42,7 +42,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold leading-tight font-['Playfair_Display'] mb-8">
-          NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span> is where bold design meets urban authenticity.
+          NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)', display: 'inline-block' }}>S</span> is where bold design meets urban authenticity.
           </h1>
 
           <h3 className="text-base font-semibold mb-4 uppercase tracking-wider text-gray-800">
@@ -51,17 +51,17 @@ export default function AboutPage() {
 
           <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-5">
             Born from the rhythm of the streets and the pulse of modern culture,{" "}
-            <strong> NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span></strong> is more than a streetwear brand — it’s a
+            <strong>NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span></strong> is more than a streetwear brand — it's a
             statement. We blend bold design with authentic attitude, creating
             pieces that redefine individuality and confidence.
           </p>
 
           <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-5">
-            Inspired by urban energy, art, and self-expression, every Neovals
+            Inspired by urban energy, art, and self-expression, every NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span>
             drop captures the raw essence of city life. Our mission is simple:
             empower the next generation to stand out, speak up, and wear their
-            values with pride.{" "}
-            <strong>NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span> isn’t just clothing — it’s a movement</strong> built
+            values with pride. {" "}
+            <strong>NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span> isn't just clothing — it's a movement</strong> built
             by rebels, dreamers, and creators who dare to redefine what style
             means today.
           </p>

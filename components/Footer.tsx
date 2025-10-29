@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 mb-12">
         <div className="bg-black text-white rounded-2xl p-8 md:p-12 text-center">
           <h3 className="text-2xl md:text-3xl font-['Playfair_Display'] font-semibold mb-3">
-            Join The  NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span> Family
+            Join The NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span> Family
           </h3>
           <p className="text-gray-300 mb-6">
             Be part of something special. Exclusive access coming soon.
@@ -36,7 +36,7 @@ const Footer = () => {
 
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
         <div>
-          <h3 className="text-lg font-semibold mb-3 font-['Playfair_Display']"> NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span></h3>
+          <h3 className="text-lg font-semibold mb-3 font-['Playfair_Display']">NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span></h3>
           <p className="text-sm text-gray-600">
             Confidence is the best outfit. Wear it daily.
           </p>
@@ -46,7 +46,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3 font-['Playfair_Display']">Quick Links</h3>
           <ul className="text-sm space-y-2 text-gray-600">
             <li><a href="/" className="hover:text-black transition">Home</a></li>
-            <li><a href="/shop" className="hover:text-black transition">Shop</a></li>
+            <li><a href="/shop" className="hover:text-black transition">APPAREL</a></li>
             <li><a href="/about" className="hover:text-black transition">About Us</a></li>
             <li><a href="/cart" className="hover:text-black transition">Cart</a></li>
             <li><a href="/wishlist" className="hover:text-black transition">Wishlist</a></li>
@@ -105,14 +105,12 @@ const Footer = () => {
             <div className="px-3 py-1.5 border border-gray-300 rounded text-xs font-semibold">VISA</div>
             <div className="px-3 py-1.5 border border-gray-300 rounded text-xs font-semibold">MASTERCARD</div>
             <div className="px-3 py-1.5 border border-gray-300 rounded text-xs font-semibold">UPI</div>
-            <div className="px-3 py-1.5 border border-gray-300 rounded text-xs font-semibold">PAYTM</div>
-            <div className="px-3 py-1.5 border border-gray-300 rounded text-xs font-semibold">GPAY</div>
           </div>
         </div>
       </div>
 
       <div className="text-center text-gray-500 text-xs mt-8 border-t border-gray-300 pt-6">
-        © 2025  NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span>. All Rights Reserved.
+        © 2025 NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span>. All Rights Reserved.
       </div>
     </footer>
   );

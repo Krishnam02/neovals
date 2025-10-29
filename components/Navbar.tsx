@@ -64,7 +64,7 @@ export default function Navbar() {
             href="/shop" 
             className={`hover:opacity-70 transition ${pathname === "/shop" ? "underline underline-offset-4" : ""}`}
           >
-            SHOP
+            APPAREL
           </Link>
           <Link 
             href="/about" 
@@ -84,7 +84,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="text-lg font-semibold tracking-wider">
-          NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span>
+          NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span>
         </Link>
 
         {/* Icons */}
@@ -118,7 +118,7 @@ export default function Navbar() {
           <div className="absolute top-0 left-0 w-64 h-full bg-black text-white p-6 shadow-xl">
             <div className="flex items-center justify-between mb-8">
               <span className="text-lg font-semibold tracking-wider">
-                NEOVAL<span className="inline-block" style={{ transform: 'scaleX(-1)' }}>S</span>
+                NEOVAL<span style={{ display: 'inline-block', transform: 'scaleX(-1)' }}>S</span>
               </span>
               <button onClick={() => setMobileMenuOpen(false)}>
                 <X className="w-6 h-6" />
@@ -137,7 +137,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`text-lg hover:opacity-70 transition ${pathname === "/shop" ? "underline underline-offset-4" : ""}`}
               >
-                SHOP
+                APPAREL
               </Link>
               <Link 
                 href="/about" 

@@ -9,7 +9,7 @@ const playfair = Playfair_Display({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Neovals",
+  title: "NEOVALS",
   description: "Premium Fashion Collection",
 };
 

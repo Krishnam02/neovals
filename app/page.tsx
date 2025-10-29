@@ -62,16 +62,6 @@ export default function Home() {
             Shop this look →
           </motion.a>
         </div>
-
-        {/* Bottom Scrolling Bar */}
-        <div className="absolute bottom-0 left-0 w-full bg-white text-black overflow-hidden py-2">
-          <div className="marquee whitespace-nowrap text-sm font-medium tracking-wide flex animate-marquee">
-            <span className="mx-8">Free shipping on orders over ₹3000</span>
-            <span className="mx-8">Free shipping on orders over ₹3000</span>
-            <span className="mx-8">Free shipping on orders over ₹3000</span>
-            <span className="mx-8">Free shipping on orders over ₹3000</span>
-          </div>
-        </div>
       </section>
 
       {/* BEST SELLERS SECTION */}
