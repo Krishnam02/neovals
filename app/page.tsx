@@ -64,60 +64,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BEST SELLERS SECTION */}
-      <section className="bg-[#f5f7f6] text-black py-20 px-10">
-        <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">
-            Best Sellers
-          </h2>
-          <a
-            href="/shop"
-            className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
-          >
-            Explore the shop →
+     {/* BEST SELLERS SECTION */}
+<section className="bg-[#f5f7f6] text-black py-20 px-10">
+  <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
+    <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">
+      Best Sellers
+    </h2>
+    <a
+      href="/shop"
+      className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
+    >
+      Explore the shop →
+    </a>
+  </div>
+
+  <div className="flex flex-col gap-24 max-w-6xl mx-auto">
+    {[
+      { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "BEST SELLER" },
+      { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "BEST SELLER" },
+      { img: "/product3.jpg", title: "Black Denim Jacket", tag: "BEST SELLER" },
+    ].map((item, i) => (
+      <motion.div
+        key={i}
+        className={`flex flex-col md:flex-row ${
+          i % 2 === 1 ? "md:flex-row-reverse" : ""
+        } items-center gap-12`}
+        whileHover={{ scale: 1.01 }}
+      >
+        <div className="flex-1 space-y-5 text-left">
+          <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
+            {item.tag}
+          </span>
+          <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">
+            {item.title}
+          </h3>
+          <p className="text-gray-600 text-base leading-relaxed max-w-md">
+            Discover timeless classics made from premium fabric and designed to
+            complement your style.
+          </p>
+          <a href="/shop">
+            <button className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all">
+              Shop Now →
+            </button>
           </a>
         </div>
 
-        <div className="flex flex-col gap-24 max-w-6xl mx-auto">
-          {[
-            { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "BEST SELLER" },
-            { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "BEST SELLER" },
-            { img: "/product3.jpg", title: "Black Denim Jacket", tag: "BEST SELLER" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              className={`flex flex-col md:flex-row ${
-                i % 2 === 1 ? "md:flex-row-reverse" : ""
-              } items-center gap-12`}
-              whileHover={{ scale: 1.01 }}
-            >
-              <div className="flex-1 space-y-5 text-left">
-                <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
-                  {item.tag}
-                </span>
-                <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-base leading-relaxed max-w-md">
-                  Discover timeless classics made from premium fabric and designed to
-                  complement your style.
-                </p>
-                <button className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all">
-                  Shop Now →
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-hidden rounded-2xl shadow-md">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+        <a href="/shop" className="flex-1 overflow-hidden rounded-2xl shadow-md block">
+          <img
+            src={item.img}
+            alt={item.title}
+            className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
+          />
+        </a>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
       {/* SHOP LINK FULL WIDTH IMAGE */}
       <section className="relative w-full h-[500px] my-20">
@@ -136,61 +138,63 @@ export default function Home() {
         </a>
       </section>
 
-      {/* NEW ARRIVALS SECTION */}
-      <section className="bg-[#f5f7f6] text-black py-20 px-10">
-        <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">
-            NEW ARRIVALS
-          </h2>
-          <a
-            href="/shop"
-            className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
-          >
-            Explore the shop →
+      
+{/* NEW ARRIVALS SECTION */}
+<section className="bg-[#f5f7f6] text-black py-20 px-10">
+  <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
+    <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">
+      NEW ARRIVALS
+    </h2>
+    <a
+      href="/shop"
+      className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
+    >
+      Explore the shop →
+    </a>
+  </div>
+
+  <div className="flex flex-col gap-24 max-w-6xl mx-auto">
+    {[
+      { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "NEW" },
+      { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "NEW" },
+      { img: "/product3.jpg", title: "Black Denim Jacket", tag: "NEW" },
+    ].map((item, i) => (
+      <motion.div
+        key={i}
+        className={`flex flex-col md:flex-row ${
+          i % 2 === 1 ? "md:flex-row-reverse" : ""
+        } items-center gap-12`}
+        whileHover={{ scale: 1.01 }}
+      >
+        <div className="flex-1 space-y-5 text-left">
+          <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
+            {item.tag}
+          </span>
+          <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">
+            {item.title}
+          </h3>
+          <p className="text-gray-600 text-base leading-relaxed max-w-md">
+            Crafted with care and designed for the modern lifestyle — 
+            explore our latest additions now.
+          </p>
+          <a href="/shop">
+            <button className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all">
+              Shop Now →
+            </button>
           </a>
         </div>
 
-        <div className="flex flex-col gap-24 max-w-6xl mx-auto">
-          {[
-            { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "NEW" },
-            { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "NEW" },
-            { img: "/product3.jpg", title: "Black Denim Jacket", tag: "NEW" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              className={`flex flex-col md:flex-row ${
-                i % 2 === 1 ? "md:flex-row-reverse" : ""
-              } items-center gap-12`}
-              whileHover={{ scale: 1.01 }}
-            >
-              <div className="flex-1 space-y-5 text-left">
-                <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
-                  {item.tag}
-                </span>
-                <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-base leading-relaxed max-w-md">
-                  Crafted with care and designed for the modern lifestyle — 
-                  explore our latest additions now.
-                </p>
-                <button className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all">
-                  Shop Now →
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-hidden rounded-2xl shadow-md">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
+        <a href="/shop" className="flex-1 overflow-hidden rounded-2xl shadow-md block">
+          <img
+            src={item.img}
+            alt={item.title}
+            className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
+          />
+        </a>
+      </motion.div>
+    ))}
+  </div>
+</section>
       {/* FOOTER + CART DRAWER */}
       <Footer />
       <CartDrawer />
