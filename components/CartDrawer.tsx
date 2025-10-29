@@ -1,127 +1,219 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-import { useCart } from "@/lib/cartContext";
-import Image from "next/image";
-import Link from "next/link";
-import { X, Minus, Plus } from "lucide-react";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useCart } from "@/lib/cartContext"; // ✅ Import your cart context
 
-export default function CartDrawer() {
-  const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, getCartTotal } = useCart();
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const { isCartOpen, setIsCartOpen } = useCart(); // ✅ use your cart drawer state
+  const { scrollY } = useScroll();
 
-  // disable scroll when open
+  const y = useTransform(scrollY, [0, 400], [0, -100]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.8]);
+
   useEffect(() => {
-    document.body.style.overflow = isCartOpen ? "hidden" : "auto";
-    return () => { document.body.style.overflow = "auto"; };
-  }, [isCartOpen]);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <AnimatePresence>
-      {isCartOpen && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-            onClick={() => setIsCartOpen(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
+    <main className="relative min-h-screen w-full overflow-x-hidden font-[Poppins] text-white">
+      {/* HERO SECTION */}
+      <section className="relative h-screen w-full">
+        <motion.img
+          src="/hero.jpg"
+          alt="Hero background"
+          style={{ y, opacity }}
+          className="absolute inset-0 h-full w-full object-cover -z-10"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70 -z-10"></div>
 
-          {/* Drawer */}
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            className="fixed top-0 right-0 h-full w-full max-w-md bg-white text-black shadow-2xl z-50 flex flex-col"
+        {/* HERO TEXT */}
+        <div className="absolute bottom-24 right-20 text-right max-w-xl">
+          <motion.h1
+            className="text-white text-5xl md:text-7xl font-semibold leading-tight font-['Playfair_Display']"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold tracking-wide">Your Cart ({cart.length})</h2>
-              <button onClick={() => setIsCartOpen(false)} className="text-gray-600 hover:text-black">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
+            Confidence is the best outfit.
+            <br />
+            Wear it daily.
+          </motion.h1>
 
-            {/* Items */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
-              {cart.length > 0 ? (
-                cart.map((item) => (
-                  <div key={`${item.id}-${item.size}`} className="flex gap-4 border-b pb-4">
-                    <div className="relative w-20 h-24 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-sm">{item.title}</h4>
-                      <p className="text-xs text-gray-600 mt-1">Size: {item.size}</p>
-                      <p className="text-sm font-semibold mt-1">{item.price}</p>
-                      
-                      {/* Quantity Controls */}
-                      <div className="flex items-center gap-2 mt-2">
-                        <button
-                          onClick={() => updateQuantity(item.id, item.size, Math.max(1, item.quantity - 1))}
-                          className="w-6 h-6 border rounded hover:bg-gray-100 flex items-center justify-center"
-                        >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <span className="text-sm w-8 text-center">{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
-                          className="w-6 h-6 border rounded hover:bg-gray-100 flex items-center justify-center"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      className="text-gray-400 hover:text-red-500"
-                      onClick={() => removeFromCart(item.id, item.size)}
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-12">
-                  <p className="text-gray-500 mb-4">Your cart is empty</p>
-                  <button
-                    onClick={() => setIsCartOpen(false)}
-                    className="text-sm underline hover:opacity-70"
-                  >
-                    Continue Shopping
-                  </button>
-                </div>
-              )}
-            </div>
+          <motion.p
+            className="text-white mt-5 text-lg md:text-xl font-light font-['Inter']"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            When you look good, you feel good.
+          </motion.p>
 
-            {/* Footer */}
-            {cart.length > 0 && (
-              <div className="p-6 border-t border-gray-200">
-                <div className="flex justify-between text-lg font-semibold mb-4">
-                  <span>Subtotal</span>
-                  <span>₹{getCartTotal().toLocaleString()}</span>
-                </div>
-                <Link href="/checkout" onClick={() => setIsCartOpen(false)}>
-                  <button className="w-full bg-black text-white py-3 rounded-full hover:bg-gray-800 transition mb-2">
-                    Checkout →
-                  </button>
-                </Link>
-                <Link href="/cart" onClick={() => setIsCartOpen(false)}>
-                  <button className="w-full border border-black py-3 rounded-full hover:bg-gray-50 transition text-sm">
-                    View Full Cart
-                  </button>
-                </Link>
+          <motion.a
+            href="/shop"
+            className="mt-10 inline-block px-6 py-3 border border-white text-white rounded-full text-base font-['Inter'] hover:bg-white hover:text-black transition"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            Shop this look →
+          </motion.a>
+        </div>
+
+        {/* Bottom Scrolling Bar */}
+        <div className="absolute bottom-0 left-0 w-full bg-white text-black overflow-hidden py-2">
+          <div className="marquee whitespace-nowrap text-sm font-medium tracking-wide flex animate-marquee">
+            <span className="mx-8">Free shipping on orders over ₹3000</span>
+            <span className="mx-8">Free shipping on orders over ₹3000</span>
+            <span className="mx-8">Free shipping on orders over ₹3000</span>
+            <span className="mx-8">Free shipping on orders over ₹3000</span>
+          </div>
+        </div>
+      </section>
+
+      {/* BEST SELLERS SECTION */}
+      <section className="bg-[#f5f7f6] text-black py-20 px-10">
+        <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">
+            Best Sellers
+          </h2>
+          <a
+            href="/shop"
+            className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
+          >
+            Explore the shop →
+          </a>
+        </div>
+
+        <div className="flex flex-col gap-24 max-w-6xl mx-auto">
+          {[
+            { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "BEST SELLER" },
+            { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "BEST SELLER" },
+            { img: "/product3.jpg", title: "Black Denim Jacket", tag: "BEST SELLER" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className={`flex flex-col md:flex-row ${i % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-12`}
+              whileHover={{ scale: 1.01 }}
+            >
+              <div className="flex-1 space-y-5 text-left">
+                <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
+                  {item.tag}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">{item.title}</h3>
+                <p className="text-gray-600 text-base leading-relaxed max-w-md">
+                  Discover timeless classics made from premium fabric and designed to complement your style.
+                </p>
+                <button
+                  onClick={() => setIsCartOpen(true)} // ✅ open the cart
+                  className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all"
+                >
+                  Shop Now →
+                </button>
               </div>
-            )}
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+
+              <div className="flex-1 overflow-hidden rounded-2xl shadow-md">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* SHOP LINK FULL WIDTH IMAGE */}
+      <section className="relative w-full h-[500px] my-20">
+        <a href="/shop">
+          <motion.img
+            src="/shop-banner.jpg"
+            alt="Shop Banner"
+            className="absolute inset-0 w-full h-full object-cover rounded-none"
+            whileHover={{ scale: 1.02 }}
+          />
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <h2 className="text-white text-4xl md:text-6xl font-['Playfair_Display'] font-semibold tracking-wide">
+              Explore the Collection →
+            </h2>
+          </div>
+        </a>
+      </section>
+
+      {/* NEW ARRIVALS SECTION */}
+      <section className="bg-[#f5f7f6] text-black py-20 px-10">
+        <div className="flex items-center justify-between mb-16 max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-['Playfair_Display'] font-semibold">NEW ARRIVALS</h2>
+          <a
+            href="/shop"
+            className="text-gray-700 text-sm md:text-base hover:underline flex items-center gap-1"
+          >
+            Explore the shop →
+          </a>
+        </div>
+
+        <div className="flex flex-col gap-24 max-w-6xl mx-auto">
+          {[
+            { img: "/product1.jpg", title: "Corduroy Overshirt", tag: "NEW" },
+            { img: "/product2.jpg", title: "Brown Shirt Jacket", tag: "NEW" },
+            { img: "/product3.jpg", title: "Black Denim Jacket", tag: "NEW" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className={`flex flex-col md:flex-row ${i % 2 === 1 ? "md:flex-row-reverse" : ""} items-center gap-12`}
+              whileHover={{ scale: 1.01 }}
+            >
+              <div className="flex-1 space-y-5 text-left">
+                <span className="inline-block bg-black text-white text-xs font-semibold px-3 py-1 rounded-sm">
+                  {item.tag}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-['Playfair_Display']">{item.title}</h3>
+                <p className="text-gray-600 text-base leading-relaxed max-w-md">
+                  Crafted with care and designed for the modern lifestyle — explore our latest additions now.
+                </p>
+                <button
+                  onClick={() => setIsCartOpen(true)} // ✅ open the cart
+                  className="border border-black px-6 py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all"
+                >
+                  Shop Now →
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-hidden rounded-2xl shadow-md">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-[550px] object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* FOOTER + CART DRAWER */}
+      <Footer />
+      <CartDrawer /> {/* ✅ no props now */}
+
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          display: inline-block;
+          animation: marquee 20s linear infinite;
+        }
+      `}</style>
+    </main>
   );
 }
