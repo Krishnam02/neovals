@@ -203,7 +203,8 @@ export default function Home() {
 
       {/* FOOTER + CART DRAWER */}
       <Footer />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer />
+
 
       <style jsx>{`
         @keyframes marquee {
