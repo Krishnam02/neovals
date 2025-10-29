@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import 'remixicon/fonts/remixicon.css';
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,6 +17,25 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+  margin-right: 4rem;
 }
 
 body {
